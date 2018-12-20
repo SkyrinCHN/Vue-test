@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN	-->
+  <div id="app">
+    <h1>Welcome {{uname}}</h1>
+   <span>金币{{gold}}</span>   
+   <span>钻石{{zuanshi}}</span>
+   <span>点券{{money}}</span>
+
+  </div>
+  <script>
+    var vm = new Vue({
+      el:"#app",
+      data:{
+        uname:"刘海",
+        score:9999999,
+        gold:132456,
+        zuanshi:99999999999,
+        money:99999999999999999
+      }
+    })
+  </script>
+</body>
+</html>
