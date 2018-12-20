@@ -10,6 +10,8 @@
 <body>
   <!--author:LiuHai -->
   <!--github:https://github.com/SkyrinCHN	-->
+
+  <!-- 视图 view -->
   <div id="app">
     <h1>Welcome {{uname}}</h1>
    <span>金币{{gold}}</span>   
@@ -18,9 +20,15 @@
 
   </div>
   <script>
+    //控制器/框架 ViewModel
     var vm = new Vue({
-      el:"#app",
+      el:"#app",//虚拟DOM树
+      
+      //响应系统
       data:{
+
+        //模型变量 model 每个模型变量 都有get()和set()访问器属性
+        // 每次修改变量模型时,都会触发set()属性
         uname:"刘海",
         score:9999999,
         gold:132456,

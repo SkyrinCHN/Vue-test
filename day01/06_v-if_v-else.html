@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN	-->
+  <div id="app">
+    <img v-if="pm25<100" src="./image/1.png" alt="">
+    <img v-else-if="pm25<200" src="./image/2.png" alt="">
+    <img v-else-if="pm25<300" src="./image/3.png" alt="">
+    <img v-else src="./image/4.png" alt="">
+  </div>
+  <script>
+   var vm =  new Vue ({
+      el:"#app",
+      data:{
+        pm25:200
+      }
+    })
+    setInterval(() => {
+     vm.pm25= Math.random()*400;
+    }, 2000);
+  </script>
+</body>
+</html>

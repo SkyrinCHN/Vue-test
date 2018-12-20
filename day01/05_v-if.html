@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    button{
+      width: 100px;
+      height: 50px;
+      background: orange;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN	-->
+  <div id="app">
+    <span>第{{pno}}页/共{{Tpno}}页</span>
+    <button @click="nextpage()" v-if="pno<Tpno">点击加载更多...</button>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        pno:1,
+        Tpno:3
+      },
+      methods:{
+        nextpage(){
+          this.pno++;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

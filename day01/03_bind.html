@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN	-->
+  <div id="app">
+    <a href="www.baidu.com" :title="tip">{{value}}</a>
+    <img :src="pm25<100?'image/1.png':
+             pm25<200?'image/2.png':
+             pm25<300?'image/3.png':
+             'image/4.png'">
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        tip: "点击跳转",
+        value: "跳转百度",
+        pm25: 100
+      }
+    })
+    setInterval(() => {
+      vm.pm25 = Math.random() * 400
+    }, 1500);
+  </script>
+</body>
+
+</html>

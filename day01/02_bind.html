@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN	-->
+
+  <div id="app">
+    <span>价格为¥{{price.toFixed(2)}}</span>
+    <p>生日为:{{birthday}}</p>
+    <p>面积为:{{parseFloat(width)* parseFloat(height)}}px</p>
+    <p>今天星期{{week[4]}}</p>
+    <p>性别1:{{sex1==1?"男":"女"}}</p>
+    <p>性别2:{{sex2==1?"男":"女"}}</p>
+
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        price:15,
+        width:"15px",
+        height:"20px",
+        birthday:Date(),
+        week:["日","1","2","3","4","5","6"],
+        sex1:1,
+        sex2:0
+      }
+    })
+  </script>
+</body>
+</html>

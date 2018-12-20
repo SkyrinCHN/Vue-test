@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    a{
+      text-decoration: none;
+      background: orange;
+    }
+    #app{
+      margin-left: 45%;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN	-->
+  <div id="app">
+    <h4>点击事件/修饰符</h4>
+    <button @click="go()">点我</button>
+    <a href="#" @click.prevent="go()">点击跳转</a>
+    <hr>
+    <h4>点击事件/修饰符</h4>
+    <a href="#" @click.prevent="change(-1)">-</a>
+    <span>{{count}}</span>
+    <a href="#" @click.prevent="change(+1)">+</a>
+  </div>
+  <script>
+    new Vue({
+      el: ("#app"),
+      data: {
+        count:1
+      },
+      methods: {
+        go() {
+          alert("你还真点我呢!");
+        },
+        change(i){
+          this.count+=i;
+          if(this.count<=0){
+            this.count = 1;
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
