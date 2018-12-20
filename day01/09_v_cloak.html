@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app" v-cloak>
+    <h1>{{uname}} </h1>
+    <h1>{{score}} </h1>
+  </div>
+  <script>
+    setInterval(() => {
+      new Vue({
+      el: "#app",
+      data: {
+        uname: "liuhai",
+        score: 3000
+      },
+      methods: {}
+    })
+    }, 2000);
+  </script>
+</body>
+
+</html>
