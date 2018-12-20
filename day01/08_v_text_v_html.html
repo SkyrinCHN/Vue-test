@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app">
+    <li>{{html}}</li>
+    <li v-html="html"></li>
+    <li v-text="html"></li>
+  </div>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        html: "来自<a href = '#'>&lt&lt新华社&gt&gt</a> 的消息"
+      },
+      methods: {}
+    })
+  </script>
+</body>
+
+</html>
