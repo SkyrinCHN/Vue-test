@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    select{
+      width: 200px;
+      height: 30px;
+      font-size: 20px;
+    } 
+    div{
+      text-align: center;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app">
+    <select v-model="city">
+      <option selected>-请选择城市-</option>
+      <option value="img/bj.jpg">北京</option>
+      <option value="img/sh.jpg">上海</option>
+      <option value="img/hz.jpg">杭州</option>
+    </select>
+    <hr>
+    <img :src="city" alt="请选择城市">
+  </div>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        city: "-请选择城市-"
+      },
+      methods: {}
+    })
+  </script>
+</body>
+
+</html>

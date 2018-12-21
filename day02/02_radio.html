@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app">
+    <label><input type="radio" v-model="chose" value="img/p3.png" name="plane">红飞机</label>
+    <label><input type="radio" v-model="chose" value="img/p5.png" name="plane">黄飞机</label>
+    <label><input type="radio" v-model="chose" value="img/p4.png" name="plane">蓝飞机</label>
+    <hr>
+    <img :src="chose">
+  </div>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        chose: "img/p0.png"
+      },
+      methods: {}
+    })
+  </script>
+</body>
+
+</html>

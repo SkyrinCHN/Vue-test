@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    div{
+      margin-top:10%;
+      margin-left:40%;
+    }
+    button{
+      height: 50px;
+      width: 60px;
+      border: 1px solid black;
+    }
+    input{
+      width: 200px;
+      height: 48px;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app">
+    <input type="text" v-model="kwords">
+    <button @click="search()">查找</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        kwords: "请输入要查找的内容",
+      },
+      methods: {
+        search() {
+          console.log(`查询 ${this.kwords} 相关的商品`)
+        }
+      },
+      watch: {
+        kwords(){
+          this.search();
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
