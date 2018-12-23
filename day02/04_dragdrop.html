@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <title>Title</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <style>
-      #app {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: pink;
-        position: absolute;
-      }
 
-      #app > div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: #3364ce;
-        width: 100px;
-        height: 100px;
-      }
-    </style>
-    <script src="../vue.js"></script>
-  </head>
+<head>
+  <title>Title</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <style>
+    #app {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: pink;
+      position: absolute;
+    }
 
-  <body>
-    <!--author:LiuHai -->
-    <!--github:https://github.com/SkyrinCHN		-->
-    <div id="app" @mousemove="move($event)">
-      <div :style = "divStyle" ></div>
-    </div>
-    <script>
-      new Vue({
-        el: "#app",
-        data: {
-          divStyle: { top: "100px", left:"100px" }
+    #app>div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #3364ce;
+      width: 100px;
+      height: 100px;
+    }
+
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app" @mousemove="move($event)">
+    <div :style="divStyle" @mouseup="up()" @mousedown="down($event)"></div>
+  </div>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        divStyle: {top: "100px",left: "100px"},
+        offsetX: 0,offsetY: 0,
+        canmove: false
+      },
+      methods: {
+        down(e) {
+          this.canmove = true;
+          this.offsetX = e.offsetX;
+          this.offsetY = e.offsetY;
         },
-        methods: {
-          move(e){
-            var left = e.offsetX-50
-            var top = e.offsetY-50;
-            this.divStyle.left=left+"px";
-            this.divStyle.top = top+"px";
+        up(){this.canmove = false;},
+        move(e) {
+          if (this.canmove) {
+            var left = e.clientX - this.offsetX;
+            var top = e.clientY - this.offsetY;
+            this.divStyle.top = top + "px";
+            this.divStyle.left = left + "px";
           }
         }
-      });
-    </script>
-  </body>
+      }
+    });
+  </script>
+</body>
+
 </html>

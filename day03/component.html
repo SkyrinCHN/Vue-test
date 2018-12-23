@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<title>Title</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style></style>
+<script src="../vue.js"></script>
+</head>
+<body>
+ <!--author:LiuHai -->
+<!--github:https://github.com/SkyrinCHN		-->
+ <div id="app">
+  <button-conter>1234</button-conter>
+</div>
+ <script>
+  Vue.component('button-conter',{
+    data:function(){
+      return{
+        count:0
+      }
+    },
+    template:'<button @click = "count++"> 你点了{{count}}次</button>'
+  })
+  new Vue({
+    el:"#app"
+  })
+</script>
+</body>
+</html>
