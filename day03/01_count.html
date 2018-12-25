@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app">
+    <cart-count></cart-count>
+  </div>
+
+  <template id="tpl1">
+    <div>
+      <button @click="change(-1)">-</button><span>{{count}}</span><button @click="change(1)">+</button>
+    </div>
+  </template>
+  <script>
+    Vue.component("cart-count", {
+      template: "#tpl1",
+      data:function(){
+        return{count:1}
+      },
+      methods:{
+        change(i){
+          this.count+=i;
+          if(this.count<1) this.count=1;
+        }
+      }
+    })
+    new Vue({ el: "#app"})
+  </script>
+</body>
+
+</html>

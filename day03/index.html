@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+  <script src="../vue-router.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app">
+    <router-view></router-view>
+  </div>
+  <template id="home">
+    <div>
+      <h1>欢迎登录</h1>
+      <h2>Welcome 3-8度 阵雨</h2>
+    </div>
+  </template>
+  <template id="tologin">
+    <form>
+      用户名: <input type="text"><br>
+      密码: <input type="password"><br>
+      <button>登录</button>
+    </form>
+  </template>
+  <script>
+    //声明子组件
+    var home = {
+      template: "#home"
+    };
+    var login = {
+      template: "#tologin"
+    };
+    //路由字典 : 就是相对路径和子组件的对应关系
+    var routes = [
+    {path:"/",component:home},
+    {path:"/home",component:home},
+    {path:"/login",component:login},
+    {path:"/*",component:{template:"<p>404,网页未找到</p>"}}
+    ];
+    //路由字典创建好后要放入新创建的路由器中
+    var router = new VueRouter({routes});
+    //放入当前页面的根组件中,在所在div里 写占位符 <router-view></router-view>
+    new Vue({
+      el: "#app",
+      router
+    })
+  </script>
+</body>
+
+</html>

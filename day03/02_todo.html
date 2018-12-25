@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app">
+    <todo></todo>
+  </div>
+
+
+  <template id="todo">
+    <div>
+      <h1>代办事项列表</h1>
+      <hr>
+      <todo-add @add="add"></todo-add>
+      <todo-list :tasks="tasks"></todo-list>
+    </div>
+  </template>
+  <template id="todoadd">
+    <div>
+      <input v-model="task"><button @click="add()">添加</button>
+    </div>
+  </template>
+  <template id="todolist">
+    <ul>
+      <todo-Item v-for="(task,i) in tasks" :task="task" :i="i" @del="del(i)"></todo-Item>
+    </ul>
+  </template>
+  <template id="todoItem">
+    <li>{{i+1}}-- {{task}}<button @click=del(i)>X</button></li>
+  </template>
+  <script>
+    var todoAdd = {
+      template: "#todoadd",
+      data() {
+        return {
+          task: ""
+        }
+      },
+      methods: {
+        add() {
+          this.$emit("add", this.task);
+          this.task = "";
+        }
+      }
+    }
+    var todoItem = {
+      template: "#todoItem",
+      props: ["task", "i"],
+      methods: {
+        del(i) {
+          this.$emit("del", i)
+        }
+      }
+    }
+    var todoList = {
+      template: "#todolist",
+      props: ["tasks"],
+      components: {
+        todoItem
+      },
+      methods: {
+        del(i) {
+          this.tasks.splice(i, 1);
+        }
+      }
+    }
+
+    Vue.component("todo", {
+      template: "#todo",
+      components: {
+        todoAdd,
+        todoList
+      },
+      data: function () {
+        return {
+          tasks: ["吃饭", "打牌", "把妹"]
+        }
+      },
+      methods: {
+        add(task) {
+          this.tasks.push(task);
+        }
+      },
+    })
+  </script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {},
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app">
+    <todo></todo>
+  </div>
+
+  <template id="todo">
+    <div>
+      <h1>待办事项</h1>
+      <hr>
+      <todo-add @add="add"></todo-add>
+      <todo-list :arrs="arrs"></todo-list>
+    </div>
+  </template>
+  <template id="todoAdd">
+    <div>
+      <input type="text" v-model="arr"><button @click="add()">添加</button>
+      <hr>
+    </div>
+  </template>
+  <template id="todoList">
+    <ul>
+      <todo-item v-for="(arr,i) in arrs" :arr="arr" :i="i" @del="del"></todo-item>
+    </ul>
+  </template>
+  <template id="todoItem">
+    <li>{{i+1}} -- {{arr}}<button @click="del()">X</button></li>
+  </template>
+
+  <script>
+    var todoItem = {
+      template: "#todoItem",
+      props:["arr","i"],
+      methods:{
+        del(){
+          this.$emit("del",this.i);
+        }
+      }
+    }
+    var todoAdd = {
+      template: "#todoAdd",
+      data:function(){
+        return {arr:""}
+      },
+      methods:{
+        add(){
+          this.$emit("add",this.arr);
+          this.arr="";
+        }
+      }
+    }
+    var todoList = {
+      template: "#todoList",
+      components: {
+        todoItem
+      },
+      props:["arrs"],
+      methods:{
+        del(i){
+          this.arrs.splice(i,1)
+        },
+      }
+    }
+
+    Vue.component("todo", {
+      template: "#todo",
+      components:{
+        todoAdd,todoList
+      },
+      data(){
+        return{
+         arrs:["吃饭","学习","睡觉"]
+        }
+      },
+      methods:{
+        add(arr){
+          this.arrs.push(arr);
+        }
+      }
+    })
+
+    new Vue({
+      el: "#app"
+    })
+  </script>
+</body>
+
+</html>
