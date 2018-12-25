@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style></style>
+  <script src="../vue.js"></script>
+  <script src="../vue-router.js"></script>
+</head>
+
+<body>
+  <!--author:LiuHai -->
+  <!--github:https://github.com/SkyrinCHN		-->
+  <div id="app">
+    <router-view></router-view>
+  </div>
+  <template id="home">
+    <div style=" background:brown">
+      <h1>这是home页面</h1>
+      <my-header></my-header>
+      <router-view></router-view>
+    </div>
+  </template>
+  <template id="header">
+    <div style=" background:rgba(224, 140, 30, 0.801)">
+      <h2>这是页头</h2>
+      <ul>
+          <router-link to="/login">登录</router-link>
+          <router-link to="/main">主页</router-link>
+          <router-link to="/about">关于</router-link>
+          <router-link to="/details/10">查看详情</router-link>
+      </ul>
+      <hr>
+    </div>
+  </template>
+  <template id="main">
+    <div style=" background:rgba(165, 157, 42, 0.952)">
+      这是首页主体
+    </div>
+  </template>
+  <template id="about">
+    <div style=" background:rgba(23, 184, 45, 0.801)">
+      这里是关于页面
+    </div>
+  </template>
+  <template id="login">
+    <div style=" background:rgba(42, 136, 165, 0.74)">
+      <form>
+        用户名: <input type="text"><br>
+        密码: <input type="password"><br>
+        <button @click="login()">登录</button>
+      </form>
+    </div>
+  </template>
+  <template id = "details">
+    <div>
+      <h2>商品{{lid}}的详情页</h2>
+    </div>
+  </template>
+  <script>
+    var details = {
+      template:"#details",
+      data(){
+        return{
+          lid:0
+        }
+      },
+      created(){this.lid=this.$route.params.lid},
+      watch:{
+        "$route":{
+          handler(to){
+            this.lid = to.params.lid;
+          },
+          immediate:true
+        }
+      }
+    }
+    var myHeader = {template:"#header"};
+    var home = {template:"#home",components:{myHeader}}
+    var main = {template:"#main"};
+    var about = {template:"#about"};
+    var login = {template:"#login",
+  methods:{
+    login(){
+      alert("登录成功,返回首页");
+      this.$router.push("/");
+    }
+  }};
+    var routes = 
+    [{path:"/",component:home,children:[
+      {path:"/",component:main},
+      {path:"/main",component:main},
+      {path:"/about",component:about},
+      {path:"/details/:lid",component:details}
+    ]},
+      {path:"/login",component:login},
+      {path:"/about",component:about},
+      {path:"/*",component:{template:"<p>404,网页未找到</p>"}}              
+  ];
+  var router = new VueRouter({routes})
+  </script>
+  <script>
+    new Vue({
+      el: "#app",router
+    })
+  </script>
+</body>
+
+</html>
